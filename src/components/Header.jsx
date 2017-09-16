@@ -7,6 +7,8 @@ import FlatButton from 'material-ui/FlatButton';
 import ActionMenu from 'material-ui/svg-icons/navigation/menu';
 
 const Logo = styled.div`
+  display: flex;
+  justify-content: center;
   &:hover {
     cursor: pointer;
   }
@@ -46,6 +48,12 @@ class Header extends Component {
         <ActionMenu />
       </IconButton>
     );
+    const leftButtons = (
+      <div>
+        <FlatButton style={style.button} containerElement={<Link to="/daily" />} label={'Daily'} />
+        <FlatButton style={style.button} containerElement={<Link to="/chart" />} label={'Chart'} />
+      </div>
+    );
     const button = (
       <div>
         <FlatButton style={style.button} containerElement={<Link to="/login" />} label={'Login'} />
@@ -61,7 +69,7 @@ class Header extends Component {
         style={{ ...styles, ...style.appBar }}
         title={<Logo onClick={() => this.props.history.push('/daily')}>Log(me)</Logo>}
         titleStyle={{}}
-        iconElementLeft={leftBurger}
+        iconElementLeft={leftButtons}
         iconElementRight={button}
       />
     );
