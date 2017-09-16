@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import firebase from 'firebase';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -12,7 +13,7 @@ function submitClick() {
 
   var firebaseRef = firebase.database().ref();
   //Gets rating based off Emoji chosen
-  var rating = 0;
+  var rating = 79;
   //Use day of week library
   var dayOfWeek = moment().day();
 
