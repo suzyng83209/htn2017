@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 
 class JournalForm extends Component {
 
@@ -23,7 +19,7 @@ class JournalForm extends Component {
     return (
       <div style={{margin: 'auto', width: '100%'}}>
         <div style={{margin: 'auto', width: '50%'}}>
-           <TextField
+           {/* <TextField
              style={{margin: 'auto', width: '100%'}}
              hintText="Enter how you are doing"
              floatingLabelText="Journal"
@@ -36,7 +32,7 @@ class JournalForm extends Component {
              primary={true}
              style={{marginTop: '15px'}}
              onClick={(event) => this.handleSubmitClick(event)}
-           />
+           /> */}
          </div>
       </div>
     );
