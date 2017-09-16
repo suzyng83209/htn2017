@@ -17,10 +17,6 @@ class HorizontalStepper extends React.Component {
     stepIndex: 0,
   };
 
-  componentWillUnmount = () => {
-    clearInterval(this.state.stepIndex);
-  }
-
   handleNext = () => {
     const {stepIndex} = this.state;
     this.setState({
@@ -30,7 +26,7 @@ class HorizontalStepper extends React.Component {
   };
 
   handleFinish = () => {
-    this.props.history.push('/');
+    this.props.history.push('/chart');
   }
 
   handlePrev = () => {
