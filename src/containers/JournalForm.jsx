@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class JournalForm extends Component {
 
@@ -19,20 +21,21 @@ class JournalForm extends Component {
     return (
       <div style={{margin: 'auto', width: '100%'}}>
         <div style={{margin: 'auto', width: '50%'}}>
-           {/* <TextField
+           <TextField
              style={{margin: 'auto', width: '100%'}}
              hintText="Enter how you are doing"
              floatingLabelText="Journal"
-             fullWidth={true}
+             multiLine={true}
+             rows={2}
              onChange = {(event, newValue) => this.setState({ name: newValue }) }
            />
            <br/>
            <RaisedButton
-             label="Submit"
+             label="Next"
              primary={true}
              style={{marginTop: '15px'}}
              onClick={(event) => this.handleSubmitClick(event)}
-           /> */}
+           />
          </div>
       </div>
     );
