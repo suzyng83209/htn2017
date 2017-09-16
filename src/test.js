@@ -2,6 +2,7 @@ import React from 'react';
 import { db } from './firebase';
 import ReactDOM from 'react-dom';
 import { OpenWeatherMap } from 'react-weather';
+import axios from 'axios';
 
 export default class Test extends React.Component {
   constructor(props) {
@@ -46,12 +47,17 @@ export default class Test extends React.Component {
     });
   };
 
+	getWeather = () => {
+		var key = "api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
+		var data = axios.get(key);
+		console.log(data);
+	}
+
   render = () => {
     return (
       <div>
-				<OpenWeatherMap city="Toronto" country="CA" appid="002768ee775ba2d1d80d3508fb8a5bc0" />
         {' '}
-        <button onClick={this.logClick}> click me to log str </button>
+        <button onClick={this.getWeather}> click me to log str </button>
       </div>
     );
   };

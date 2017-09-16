@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "joannalu97.github.io/htn2017",
   "dependencies": {
+    "axios": "^0.16.2",
     "firebase": "^4.3.1",
     "firebaseui": "^2.3.0",
     "install": "^0.10.1",
