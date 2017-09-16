@@ -2,6 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "joannalu97.github.io/htn2017"
   "dependencies": {
     "firebase": "^4.3.1",
     "firebaseui": "^2.3.0",
