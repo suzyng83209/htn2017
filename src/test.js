@@ -48,14 +48,20 @@ export default class Test extends React.Component {
   };
 
 	getWeather = () => {
-		var key = "api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
-		var data = axios.get(key);
-		console.log(data);
+		var key = "http://api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
+		return axios.get(key)
+		.then((json) => {
+			var data = JSON.stringify(json);
+			console.log(data.weather[0].description);
+			return data.weather[0].description;
+		}).catch((err) => {
+			console.log('the error for this call', err)
+		})
 	}
 
   render = () => {
     return (
-      <div>
+      <div style={{height:"100vh", marginTop:"50%"}}>
         {' '}
         <button onClick={this.getWeather}> click me to log str </button>
       </div>
