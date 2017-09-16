@@ -7,6 +7,7 @@ import Home from './containers/Home';
 import Header from './components/Header.jsx';
 import LeftDrawer from './components/LeftDrawer.jsx';
 import Input from './components/Input';
+import MoodChart from './containers/MoodChart';
 import logo from './logo.svg';
 import './App.css';
 
@@ -58,11 +59,12 @@ class App extends Component {
             handleChangeRequestNavDrawer={this.handleChangeRequestNavDrawer}
           />
           {this.renderLeftDrawer()}
-         <div>
+         <div style={styles.container}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/daily" component={HorizontalStepper} />
             <Route path="/input" component={Input} />
+            <Route path="/chart" component={MoodChart} />
           </Switch>
          </div>
        </div>
