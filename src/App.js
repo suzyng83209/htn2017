@@ -5,6 +5,7 @@ import HorizontalStepper from './containers/HorizontalStepper';
 import { LARGE, SMALL } from 'material-ui/utils/withWidth';
 import Home from './containers/Home';
 import Login from './containers/Login';
+import SignUp from './containers/SignUp';
 import Header from './components/Header.jsx';
 import LeftDrawer from './components/LeftDrawer.jsx';
 import Input from './components/Input';
@@ -67,6 +68,7 @@ class App extends Component {
             <Route path="/input" component={Input} />
             <Route path="/chart" component={MoodChart} />
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
           </Switch>
          </div>
        </div>
