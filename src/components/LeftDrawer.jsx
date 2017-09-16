@@ -3,6 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
 import PersonIcon from 'material-ui/svg-icons/social/person';
+import ChartIcon from 'material-ui/svg-icons/social/poll';
 import { spacing, typography } from 'material-ui/styles';
 
 class LeftDrawer extends Component {
@@ -49,6 +50,13 @@ class LeftDrawer extends Component {
             primaryText={'Daily Journal Entry'}
             leftIcon={(<PersonIcon/>)}
             containerElement={<Link to={'/daily'} />}
+          />
+          <MenuItem
+            key={1}
+            style={{fontSize: 14}}
+            primaryText={'Mood Chart'}
+            leftIcon={(<ChartIcon/>)}
+            containerElement={<Link to={'/chart'} />}
           />
         </div>
       </Drawer>
