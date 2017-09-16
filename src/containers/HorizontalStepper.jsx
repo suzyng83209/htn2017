@@ -7,6 +7,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import JournalText from './JournalText';
+import JournalRating from './JournalRating';
 import { withRouter } from 'react-router-dom';
 
 class HorizontalStepper extends React.Component {
@@ -42,7 +43,7 @@ class HorizontalStepper extends React.Component {
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return 'Tell us more about your mood';
+        return (<JournalRating/>);
       case 1:
         return (<JournalText/>);
     }
