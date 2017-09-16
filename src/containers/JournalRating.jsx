@@ -1,8 +1,10 @@
 import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import ThumbDown from 'material-ui/svg-icons/action/thumb-down';
-import Neutral from 'material-ui/svg-icons/action/face';
-import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
+import VerySad from 'material-ui/svg-icons/social/mood-bad';
+import Sad from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import Neutral from 'material-ui/svg-icons/social/sentiment-neutral';
+import Happy from 'material-ui/svg-icons/social/sentiment-satisfied';
+import VeryHappy from 'material-ui/svg-icons/social/sentiment-very-satisfied';
 
 const styles = {
   block: {
@@ -17,9 +19,15 @@ const JournalRating = () => (
   <div>
     <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
       <RadioButton
+        value="very_happy"
+        label="Very Happy"
+        checkedIcon={<VeryHappy />}
+        style={styles.radioButton}
+      />
+      <RadioButton
         value="happy"
         label="Happy"
-        checkedIcon={<ThumbUp />}
+        checkedIcon={<Happy />}
         style={styles.radioButton}
       />
       <RadioButton
@@ -31,7 +39,13 @@ const JournalRating = () => (
       <RadioButton
         value="sad"
         label="Sad"
-        checkedIcon={<ThumbUp />}
+        checkedIcon={<Sad />}
+        style={styles.radioButton}
+      />
+      <RadioButton
+        value="very_sad"
+        label="Very sad"
+        checkedIcon={<VerySad />}
         style={styles.radioButton}
       />
     </RadioButtonGroup>
