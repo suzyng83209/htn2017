@@ -16,7 +16,7 @@ class LeftDrawer extends Component {
         color: typography.textFullWhite,
         lineHeight: `${spacing.desktopKeylineIncrement}px`,
         fontWeight: typography.fontWeightLight,
-        backgroundColor: '#FFA500',
+        backgroundColor: '#00bcd4',
         paddingLeft: 40,
         height: 56,
       },

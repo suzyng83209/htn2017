@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import ActionMenu from 'material-ui/svg-icons/navigation/menu';
+
+const Logo = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 class Header extends Component {
   handleToggle = () => {
@@ -18,7 +25,7 @@ class Header extends Component {
         top: 0,
         overflow: 'hidden',
         maxHeight: 57,
-        backgroundColor: '#FFA500'
+        backgroundColor: '#36e1ea'
       },
       menuButton: {
         marginLeft: 30
@@ -52,7 +59,7 @@ class Header extends Component {
     return (
       <AppBar
         style={{ ...styles, ...style.appBar }}
-        title={<div onClick={() => this.props.history.push('/daily')}>Log(me)</div>}
+        title={<Logo onClick={() => this.props.history.push('/daily')}>Log(me)</Logo>}
         titleStyle={{}}
         iconElementLeft={leftBurger}
         iconElementRight={button}

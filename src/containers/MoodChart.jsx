@@ -3,10 +3,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
 
 const data = [
-  {quarter: 1, earnings: 13000},
-  {quarter: 2, earnings: 16500},
-  {quarter: 3, earnings: 14250},
-  {quarter: 4, earnings: 19000}
+  {day: 1, mood: 2},
+  {day: 2, mood: 1},
+  {day: 3, mood: 1},
+  {day: 4, mood: 0},
+  {day: 5, mood: 0},
+  {day: 6, mood: 2},
+  {day: 7, mood: 1}
 ];
 
 class MoodChart extends React.Component {
@@ -17,18 +20,18 @@ class MoodChart extends React.Component {
         domainPadding={20}
       >
         <VictoryAxis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+          tickValues={[1, 2, 3, 4, 5, 6, 7]}
+          tickFormat={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
         />
         <VictoryAxis
           dependentAxis
-          tickFormat={(x) => (`$${x / 1000}k`)}
+          tickFormat={(x) => (`$${x}`)}
         />
         <VictoryBar
           data={data}
           colorScale={"warm"}
-          x="quarter"
-          y="earnings"
+          x="day"
+          y="mood"
         />
       </VictoryChart>
     )

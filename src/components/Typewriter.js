@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const BlinkingCaret = styled.span`
-  border-right: 3px solid ${props => (props.isBlink ? "black" : "transparent")};
-  color: ${props => "me".includes(props.value) ? 'orange' : 'black' };
+  border-right: 6px solid ${props => (props.isBlink ? 'black' : 'transparent')};
+  color: ${props => ('me'.includes(props.value) ? '#36e1ea' : '#292929')};
+  padding-right: ${props => (props.last ? '8px' : '0')};
 `;
 
 class Typewriter extends React.Component {
@@ -22,10 +23,7 @@ class Typewriter extends React.Component {
     const letters = [...this.props.phrase];
     let typingTimer = setInterval(this.tick, this.props.time);
     let blinkingCaretTimer = setInterval(this.handleBlink, 500);
-    setTimeout(
-      () => this.setState({ typingTimer, blinkingCaretTimer, letters }),
-      this.props.delay
-    );
+    setTimeout(() => this.setState({ typingTimer, blinkingCaretTimer, letters }), this.props.delay);
   };
 
   tick = () => {
@@ -41,14 +39,20 @@ class Typewriter extends React.Component {
   render = () => {
     const { letters, counter, isBlink } = this.state;
     return (
-      <h1 style={{ fontFamily: "Arvo, serif", overflow: "hidden" }}>
+      <h1 style={{ fontFamily: 'Arvo, serif', overflow: 'hidden', fontSize: '4em' }}>
         {letters.map((x, i) => {
           return (
             i < counter &&
-            i < letters.length &&
-            <BlinkingCaret key={i} value={x} isBlink={i === counter - 1 && isBlink}>
-              {x}
-            </BlinkingCaret>
+            i < letters.length && (
+              <BlinkingCaret
+                value={x}
+                key={i}
+                last={i === letters.length - 1}
+                isBlink={i === counter - 1 && isBlink}
+              >
+                {x}
+              </BlinkingCaret>
+            )
           );
         })}
       </h1>
@@ -60,5 +64,5 @@ export default Typewriter;
 
 Typewriter.defaultProps = {
   time: 1000,
-  phrase: "Enter"
+  phrase: 'Enter'
 };
