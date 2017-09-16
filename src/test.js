@@ -49,8 +49,7 @@ export default class Test extends React.Component {
   render = () => {
     return (
       <div>
-				<OpenWeatherMap city="Toronto" country="CA" appid="002768ee775ba2d1d80d3508fb8a5bc0
-" />
+				<OpenWeatherMap city="Toronto" country="CA" appid="002768ee775ba2d1d80d3508fb8a5bc0" />
         {' '}
         <button onClick={this.logClick}> click me to log str </button>
       </div>
