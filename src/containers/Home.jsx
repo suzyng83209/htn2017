@@ -4,6 +4,7 @@ import '../App.css';
 import { db } from '../firebase';
 import moment from 'moment';
 import Typewriter from '../components/Typewriter';
+import Test from '../test';
 
 const submitClick = () => {
   const rating = 79;
@@ -40,6 +41,7 @@ class Home extends Component {
         <div className="App">
          <Typewriter phrase="Log(me)." time={200} />
          <button onClick={submitClick}>Update Firebase</button>
+         <Test />
         </div>
       </div>
     );
