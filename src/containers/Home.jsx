@@ -4,6 +4,7 @@ import '../App.css';
 import { db } from '../firebase';
 import moment from 'moment';
 import styled, { keyframes } from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import Typewriter from '../components/Typewriter';
 import Test from '../test';
 
@@ -32,7 +33,7 @@ const submitClick = () => {
 class Home extends Component {
   handleKeyDown = e => {
     if (e.key === 'Enter') {
-      console.log('enter press here! ');
+      this.props.history.push('/daily');
     }
   };
 
@@ -55,4 +56,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);
