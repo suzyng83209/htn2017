@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const BlinkingCaret = styled.span`
   border-right: 3px solid ${props => (props.isBlink ? "black" : "transparent")};
+  color: ${props => "me".includes(props.value) ? 'orange' : 'black' };
 `;
 
 class Typewriter extends React.Component {
@@ -23,7 +24,7 @@ class Typewriter extends React.Component {
     let blinkingCaretTimer = setInterval(this.handleBlink, 500);
     setTimeout(
       () => this.setState({ typingTimer, blinkingCaretTimer, letters }),
-      3000
+      this.props.delay
     );
   };
 
@@ -44,17 +45,17 @@ class Typewriter extends React.Component {
   render = () => {
     const { letters, counter, isBlink } = this.state;
     return (
-      <div style={{ fontFamily: "Bungee Shade", overflow: "hidden" }}>
+      <h1 style={{ fontFamily: "Arvo, serif", overflow: "hidden" }}>
         {letters.map((x, i) => {
           return (
             i < counter &&
             i < letters.length &&
-            <BlinkingCaret key={i} isBlink={i === counter - 1 && isBlink}>
+            <BlinkingCaret key={i} value={x} isBlink={i === counter - 1 && isBlink}>
               {x}
             </BlinkingCaret>
           );
         })}
-      </div>
+      </h1>
     );
   };
 }

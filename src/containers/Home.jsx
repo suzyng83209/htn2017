@@ -31,18 +31,10 @@ const submitClick = () => {
 class Home extends Component {
   render() {
     return (
-      <div className="Home">
-        <div className="Home-header">
-          <h2>Welcome to Our App</h2>
-        </div>
-        <p className="Home-intro">
-          This is temporary text, this will eventually be the home page.
-        </p>
-        <div className="App">
-         <Typewriter phrase="Log(me)." time={200} />
-         <button onClick={submitClick}>Update Firebase</button>
-         <Test />
-        </div>
+      <div className="App">
+          <Typewriter phrase="Log(me)." time={300} delay={500} />
+          {/* <button onClick={submitClick}>Update Firebase</button>
+          <Test /> */}
       </div>
     );
   }
