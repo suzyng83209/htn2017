@@ -1,56 +1,52 @@
 import React from 'react';
-import {
-  Step,
-  Stepper,
-  StepLabel,
-} from 'material-ui/Stepper';
+import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import JournalText from './JournalText';
 import JournalRating from './JournalRating';
 import { withRouter } from 'react-router-dom';
+import { db } from '../firebase';
+
+const Input = props => (
+  <div>
+    {React.Children.map(
+      props.children,
+      (child, index) => index === props.step && React.cloneElement(child)
+    )}
+  </div>
+);
 
 class HorizontalStepper extends React.Component {
-
   state = {
     finished: false,
-    stepIndex: 0,
+    stepIndex: 0
   };
 
   handleNext = () => {
-    const {stepIndex} = this.state;
+    const { stepIndex } = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 1,
+      finished: stepIndex >= 1
     });
   };
 
   handleFinish = () => {
     this.props.history.push('/chart');
-  }
+  };
 
   handlePrev = () => {
-    const {stepIndex} = this.state;
+    const { stepIndex } = this.state;
     if (stepIndex > 0) {
-      this.setState({stepIndex: stepIndex - 1});
+      this.setState({ stepIndex: stepIndex - 1 });
     }
   };
 
-  getStepContent(stepIndex) {
-    switch (stepIndex) {
-      case 0:
-        return (<JournalRating/>);
-      case 1:
-        return (<JournalText/>);
-    }
-  }
-
   render() {
-    const {finished, stepIndex} = this.state;
-    const contentStyle = {margin: '0 16px'};
+    const { finished, stepIndex } = this.state;
+    const contentStyle = { margin: '0 16px' };
 
     return (
-      <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
+      <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
         <Stepper activeStep={stepIndex}>
           <Step>
             <StepLabel>Select current mood</StepLabel>
@@ -61,13 +57,16 @@ class HorizontalStepper extends React.Component {
         </Stepper>
         <div style={contentStyle}>
           <div>
-            <div>{this.getStepContent(stepIndex)}</div>
-            <div style={{marginTop: 12}}>
+            <Input step={stepIndex}>
+              <JournalRating />
+              <JournalText />
+            </Input>
+            <div style={{ marginTop: 12 }}>
               <FlatButton
                 label="Back"
                 disabled={stepIndex === 0}
                 onTouchTap={this.handlePrev}
-                style={{marginRight: 12}}
+                style={{ marginRight: 12 }}
               />
               <RaisedButton
                 label={stepIndex === 1 ? 'Finish' : 'Next'}
