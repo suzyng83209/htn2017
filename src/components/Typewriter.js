@@ -29,7 +29,7 @@ class Typewriter extends React.Component {
   };
 
   componentWillUnmount = () => {
-    this.clearInterval(this.state.typingTimer);
+    clearInterval(this.state.typingTimer);
   };
 
   tick = () => {
