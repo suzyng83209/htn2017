@@ -28,10 +28,6 @@ class Typewriter extends React.Component {
     );
   };
 
-  componentWillUnmount = () => {
-    clearInterval(this.state.typingTimer);
-  };
-
   tick = () => {
     if (this.state.counter < this.state.letters.length) {
       this.setState({ counter: this.state.counter + 1 });
