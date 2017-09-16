@@ -61,7 +61,7 @@ class HorizontalStepper extends React.Component {
         </Stepper>
         <div style={contentStyle}>
           <div>
-            <p>{this.getStepContent(stepIndex)}</p>
+            <div>{this.getStepContent(stepIndex)}</div>
             <div style={{marginTop: 12}}>
               <FlatButton
                 label="Back"
