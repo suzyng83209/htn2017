@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import moment from 'moment';
 import './App.css';
-import { db, ui, uiConfig } from './firebase';
+import { db } from './firebase';
 
 const submitClick = () => {
   const rating = 79;
@@ -28,9 +28,6 @@ const submitClick = () => {
 };
 
 class App extends Component {
-  componentDidMount = () => {
-    ui.start('#firebaseui-auth', uiConfig);
-  };
   render() {
     return (
       <div className="App">
