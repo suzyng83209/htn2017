@@ -1,41 +1,27 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
-
-const data = [
-  {day: 1, mood: 2},
-  {day: 2, mood: 1},
-  {day: 3, mood: 1},
-  {day: 4, mood: 0},
-  {day: 5, mood: 0},
-  {day: 6, mood: 2},
-  {day: 7, mood: 1}
-];
+import { VictoryLine, VictoryScatter, VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
 
 class MoodChart extends React.Component {
   render() {
-    return (
-      <VictoryChart
-        theme={VictoryTheme.material}
-        domainPadding={20}
-      >
-        <VictoryAxis
-          tickValues={[1, 2, 3, 4, 5, 6, 7]}
-          tickFormat={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+	return (
+    <g transform={"translate(400, 0)"}>
+      <VictoryChart width={1000}>
+        <VictoryAxis/>
+        <VictoryAxis dependentAxis/>
+        <VictoryLine
+          style={{ data: { stroke: "orange" }}}
+          y={(data) => Math.sin(2 * Math.PI * data.x)}
         />
-        <VictoryAxis
-          dependentAxis
-          tickFormat={(x) => (`$${x}`)}
+        <VictoryScatter
+          y={(data) => Math.sin(2 * Math.PI * data.x)}
+          samples={25}
+          size={5}
+          style={{ data: { fill: "tomato" }}}
         />
-        <VictoryBar
-          data={data}
-          colorScale={"warm"}
-          x="day"
-          y="mood"
-        />
-      </VictoryChart>
+       </VictoryChart>
+      </g>
     )
   }
 }
-
 export default MoodChart;
