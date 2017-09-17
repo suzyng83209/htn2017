@@ -78,6 +78,7 @@ class HorizontalStepper extends React.Component {
         return data.documents[0].score;
       })
       .catch(error => {
+        return 0;
         console.log(error);
       });
   };
