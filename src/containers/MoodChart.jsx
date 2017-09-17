@@ -25,6 +25,19 @@ const data = [
   { day: 7, mood: 1 }
 ];
 
+const fakeData = {
+	Sunday: {
+		mood: 0,
+		score: 0.5,
+		weather: 'rain',
+	},
+	Monday: {
+		mood: 1,
+		score: 0.7,
+		weather: 'sun',
+	}
+}
+// MoodTable data={fakeData}/>
 class MoodChart extends React.Component {
   constructor(props) {
     super(props);
