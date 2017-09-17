@@ -12,17 +12,29 @@ class Login extends Component {
     };
   }
 
+  componentDidMount = () => {
+    ui.start('#firebaseui-auth', uiConfig);
+  };
+
+  componentWillUnmount = () => {
+    ui.reset();
+  };
+
   handleLoginClick = event => {
     event.preventDefault();
-    auth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
-      console.log(error.code, error.message);
-    });
+    auth
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => console.log('done logging in'))
+      .catch(error => {
+        console.log(error.code, error.message);
+      });
   };
 
   render() {
     return (
       <div style={{ margin: 'auto', width: '100%' }}>
         <div style={{ margin: 'auto', width: '50%' }}>
+          <div id="firebaseui-auth" />
           <TextField
             style={{ margin: 'auto', width: '100%' }}
             hintText="Enter your email"
@@ -35,7 +47,8 @@ class Login extends Component {
             type="password"
             hintText="Enter your Password"
             floatingLabelText="Password"
-            onChange={(event, newValue) => this.setState({ password: newValue })}
+            onChange={(event, newValue) =>
+              this.setState({ password: newValue })}
           />
           <br />
           <RaisedButton

@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "firebase": "^4.3.1",
+    "firebase-functions": "^0.6.3",
     "firebaseui": "^2.3.0",
     "install": "^0.10.1",
     "material-ui": "^0.17.1",
