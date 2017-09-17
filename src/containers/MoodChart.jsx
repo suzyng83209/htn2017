@@ -18,6 +18,19 @@ const data = [
 	{day: 7, mood: 4}
 ]
 
+const fakeData = {
+	Sunday: {
+		mood: 0,
+		score: 0.5,
+		weather: 'rain',
+	},
+	Monday: {
+		mood: 1,
+		score: 0.7,
+		weather: 'sun',
+	}
+}
+
 class MoodChart extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,30 +51,32 @@ class MoodChart extends React.Component {
 	}
 
   render() {
-	return (
-    <g transform={"translate(500, 0)"}>
-    <VictoryChart
-         //theme={VictoryTheme.material}
-				 domainPadding={{ x: 40, y: 40 }}
-       >
-         <VictoryAxis
-           tickValues={[1, 2, 3, 4, 5, 6, 7]}
-           tickFormat={["S", "M","T", "W", "Th", "F", "S"]}
-         />
-         <VictoryAxis
-           dependentAxis
-		   		 tickValues={[0, 1, 2, 3, 4]}
-           tickFormat={["Very Sad","Sad","Neutral","Happy","Very Happy"]}
-         />
-         <VictoryLine
-           data={data}
-		       width={2100}
-           colorScale={"warm"}
-           x="day"
-           y="mood"
-         />
-       </VictoryChart>
-	</g>
+		return (
+			<div>
+		    <g transform={"translate(500, 0)"}>
+			    <VictoryChart
+		         //theme={VictoryTheme.material}
+						 domainPadding={{ x: 40, y: 40 }}
+		       >
+		         <VictoryAxis
+		           tickValues={["Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]}
+		           tickFormat={["S", "M","T", "W", "Th", "F", "S"]}
+		         />
+		         <VictoryAxis
+		           dependentAxis
+				   		 tickValues={[0, 1, 2, 3, 4]}
+		           tickFormat={["Very Sad","Sad","Neutral","Happy","Very Happy"]}
+		         />
+		         <VictoryLine
+		           data={data}
+				       width={2100}
+		           colorScale={"warm"}
+		           x="day"
+		           y="mood"
+		         />
+			     </VictoryChart>
+				 </g>
+			</div>
     )
   }
 }
