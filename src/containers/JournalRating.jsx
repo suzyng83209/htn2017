@@ -23,31 +23,31 @@ const JournalRating = ({ handleChange }) => (
       onChange={handleChange}
     >
       <RadioButton
-        value="very_happy"
+        value="4"
         label="Very Happy"
         checkedIcon={<VeryHappy />}
         style={styles.radioButton}
       />
       <RadioButton
-        value="happy"
+        value="3"
         label="Happy"
         checkedIcon={<Happy />}
         style={styles.radioButton}
       />
       <RadioButton
-        value="neutral"
+        value="2"
         label="Neutral"
         checkedIcon={<Neutral />}
         style={styles.radioButton}
       />
       <RadioButton
-        value="sad"
+        value="1"
         label="Sad"
         checkedIcon={<Sad />}
         style={styles.radioButton}
       />
       <RadioButton
-        value="very_sad"
+        value="0"
         label="Very sad"
         checkedIcon={<VerySad />}
         style={styles.radioButton}
