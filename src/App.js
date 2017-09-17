@@ -27,18 +27,10 @@ class App extends Component {
     };
   }
 
-  checkUser = () => {
+  componentWillMount = () => {
     auth.onAuthStateChanged(user => {
       this.setState({ user: (user || {}).providerData });
     });
-  };
-
-  componentWillMount = () => {
-    this.checkUser();
-  };
-
-  componentDidUpdate = () => {
-    this.checkUser();
   };
 
   checkAuth = TargetPage =>
