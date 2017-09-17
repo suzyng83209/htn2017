@@ -16,6 +16,13 @@ const Logo = styled.div`
 `;
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: window.localStorage.getItem('firebaseui::rememberedAccounts')
+    };
+  }
+
   handleToggle = () => {
     this.props.handleChangeRequestNavDrawer();
   };
@@ -66,20 +73,27 @@ class Header extends Component {
         />
       </div>
     );
-    const button = (
-      <div>
+    const button =
+      this.state.user && this.state.user.length ? (
         <FlatButton
           style={style.button}
-          containerElement={<Link to="/login" />}
-          label={'Login'}
+          onClick={() => auth.signOut().then(() => console.log('done'))}
+          label={'Logout'}
         />
-        <FlatButton
-          style={style.button}
-          containerElement={<Link to="/signup" />}
-          label={'Sign Up'}
-        />
-      </div>
-    );
+      ) : (
+        <div>
+          <FlatButton
+            style={style.button}
+            containerElement={<Link to="/login" />}
+            label={'Login'}
+          />
+          <FlatButton
+            style={style.button}
+            containerElement={<Link to="/signup" />}
+            label={'Sign Up'}
+          />
+        </div>
+      );
     return (
       <AppBar
         style={{ ...styles, ...style.appBar }}

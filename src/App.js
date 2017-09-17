@@ -16,9 +16,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: window.localStorage.getItem('firebaseui::rememberedAccounts')
+      user: null
     };
   }
+
+  componentWillMount = () => {
+    auth.onAuthStateChanged(user => {
+      this.setState({ user: (user || {}).providerData });
+    });
+  };
 
   checkAuth = TargetPage =>
     !this.state.user || !this.state.user.length ? (
