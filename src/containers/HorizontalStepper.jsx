@@ -74,6 +74,7 @@ class HorizontalStepper extends React.Component {
           time={100}
           delay={0}
           substr=""
+          sustained={stepIndex < 1}
         />
         {stepIndex ? (
           <Typewriter
@@ -99,22 +100,20 @@ class HorizontalStepper extends React.Component {
               <JournalRating handleChange={this.handleRatingChange} />
               <JournalText handleChange={this.handleTextChange} />
             </Input>
-            <div style={{ marginTop: 12 }}>
-              <FlatButton
-                label="Back"
-                disabled={stepIndex === 0}
-                onTouchTap={this.handlePrev}
-                style={{ marginRight: 12 }}
-              />
-              <RaisedButton
-                label={stepIndex === 1 ? 'Finish' : 'Next'}
-                primary={true}
-                onTouchTap={
-                  stepIndex === 1 ? this.handleFinish : this.handleNext
-                }
-              />
-            </div>
           </div>
+        </div>
+        <div style={{ margin: '48px 0' }}>
+          <FlatButton
+            label="Back"
+            disabled={stepIndex === 0}
+            onTouchTap={this.handlePrev}
+            style={{ marginRight: 12 }}
+          />
+          <RaisedButton
+            label={stepIndex === 1 ? 'Finish' : 'Next'}
+            primary={true}
+            onTouchTap={stepIndex === 1 ? this.handleFinish : this.handleNext}
+          />
         </div>
       </div>
     );

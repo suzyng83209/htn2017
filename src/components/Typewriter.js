@@ -11,6 +11,7 @@ const BlinkingCaret = styled.span`
 const Container = styled.div`
   font-family: 'Arvo', serif;
   overflow: hidden;
+  padding: 16px;
   font-size: ${props => (props.size ? props.size : '4em')};
 `;
 
@@ -36,12 +37,6 @@ class Typewriter extends React.Component {
         }),
       delay
     );
-    if (!sustained) {
-      setTimeout(
-        () => clearInterval(this.state.blinkingCaretTimer),
-        delay + this.state.letters.length * time
-      );
-    }
   };
 
   tick = () => {
@@ -62,7 +57,10 @@ class Typewriter extends React.Component {
   };
 
   render = () => {
-    const { letters, counter, isBlink } = this.state;
+	const { letters, counter, isBlink } = this.state;
+	if (!this.props.sustained) {
+		clearInterval(this.state.blinkingCaretTimer);
+	}
     return (
       <Container size={this.props.fontSize}>
         {letters.map((x, i) => {
