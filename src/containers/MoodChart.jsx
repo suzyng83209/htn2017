@@ -41,8 +41,8 @@ class MoodChart extends React.Component {
 	return (
     <g transform={"translate(500, 0)"}>
     <VictoryChart
-         //theme={VictoryTheme.material}
-				 domainPadding={{ x: 40, y: 40 }}
+          theme={VictoryTheme.material}
+		  padding = {{ top: 50, bottom: 80, left: 80, right: 80 }}
        >
          <VictoryAxis
            tickValues={[1, 2, 3, 4, 5, 6, 7]}
@@ -50,12 +50,12 @@ class MoodChart extends React.Component {
          />
          <VictoryAxis
            dependentAxis
-		   		 tickValues={[0, 1, 2, 3, 4]}
+		   tickValues={[0, 1, 2, 3, 4]}
            tickFormat={["Very Sad","Sad","Neutral","Happy","Very Happy"]}
          />
          <VictoryLine
            data={data}
-		       width={2100}
+		   width={2100}
            colorScale={"warm"}
            x="day"
            y="mood"
