@@ -5,7 +5,7 @@ import HorizontalStepper from './containers/HorizontalStepper';
 import Home from './containers/Home';
 import Authenticate from './containers/Authenticate';
 import SignUp from './containers/SignUp';
-import Header from './components/Header.jsx';
+import Header from './components/Header';
 import Test from './test';
 import Input from './components/Input';
 import MoodChart from './containers/MoodChart';

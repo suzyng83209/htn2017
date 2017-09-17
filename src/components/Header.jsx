@@ -98,7 +98,7 @@ class Header extends Component {
       <AppBar
         style={{ ...styles, ...style.appBar }}
         title={
-          <Logo onClick={() => this.props.history.push('/daily')}>Log(me)</Logo>
+          <Logo onClick={() => this.props.history.push('/')}>Log(me)</Logo>
         }
         titleStyle={{}}
         iconElementLeft={leftButtons}
