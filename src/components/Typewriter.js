@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BlinkingCaret = styled.span`
-  border-right: 6px solid ${props => (props.isBlink ? 'black' : 'transparent')};
+  border-right: 4px solid ${props => (props.isBlink ? 'black' : 'transparent')};
   color: ${props =>
     props.substr.includes(props.value) ? '#36e1ea' : '#292929'};
   padding-right: ${props => (props.last ? '8px' : '0')};
@@ -22,18 +22,26 @@ class Typewriter extends React.Component {
       blinkingCaretTimer: null,
       isBlink: false,
       counter: 0,
-      letters: []
+      letters: [...props.phrase]
     };
   }
 
   componentDidMount = () => {
-    const letters = [...this.props.phrase];
-    let typingTimer = setInterval(this.tick, this.props.time);
-    let blinkingCaretTimer = setInterval(this.handleBlink, 500);
+    const { delay, time, sustained } = this.props;
     setTimeout(
-      () => this.setState({ typingTimer, blinkingCaretTimer, letters }),
-      this.props.delay
+      () =>
+        this.setState({
+          typingTimer: setInterval(this.tick, time),
+          blinkingCaretTimer: setInterval(this.handleBlink, 500)
+        }),
+      delay
     );
+    if (!sustained) {
+      setTimeout(
+        () => clearInterval(this.state.blinkingCaretTimer),
+        delay + this.state.letters.length * time
+      );
+    }
   };
 
   tick = () => {
@@ -43,7 +51,14 @@ class Typewriter extends React.Component {
   };
 
   handleBlink = () => {
-    this.setState({ isBlink: !this.state.isBlink });
+    if (this.state.letters.length) {
+      this.setState({ isBlink: !this.state.isBlink });
+    }
+  };
+
+  componentWillUnmount = () => {
+    clearInterval(this.state.typingTimer);
+    clearInterval(this.state.blinkingCaretTimer);
   };
 
   render = () => {

@@ -69,12 +69,22 @@ class HorizontalStepper extends React.Component {
     return (
       <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
         <Typewriter
-          phrase="How are you feeling today?"
+          phrase={'How are you feeling today?'}
           fontSize="2em"
-          time={200}
+          time={100}
           delay={0}
           substr=""
         />
+        {stepIndex ? (
+          <Typewriter
+            phrase={'Tell me more about it.'}
+            fontSize="2em"
+            time={100}
+            delay={0}
+            substr=""
+            sustained
+          />
+        ) : null}
         <Stepper activeStep={stepIndex}>
           <Step>
             <StepLabel>Select current mood</StepLabel>
