@@ -33,7 +33,7 @@ export default class Test extends React.Component {
        'content-type': 'application/json',
        'ocp-apim-subscription-key': '82eaf8d7aaf141e7b51d448766e4325a',
       },
-      body: JSON.stringify({
+      body: {
         "documents": [
           {
             "language": "en",
@@ -41,7 +41,7 @@ export default class Test extends React.Component {
             "text": txt,
           }
         ]
-      }),
+      },
     })
     .then(function (response) {
       return response.json();

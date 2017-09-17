@@ -35,67 +35,73 @@ class HorizontalStepper extends React.Component {
     });
   };
 
-  setWeather = (weather) => {
-    db.ref().child('Weather').set(weather);
-  }
-
   getWeather = () => {
-    var key = "http://api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
-    return axios.get(key)
-    .then((json) => {
-      const weather = json.data.weather[0].description;
-      return this.setWeather(weather);
-    }).catch((err) => {
-      return err;
-    })
-  }
-
-  saveSentimentAnalysis = (sentimentScore) => {
-    db.ref().child('SentimentScore').set(sentimentScore);
-  }
+    var key =
+      'http://api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0';
+    return axios
+      .get(key)
+      .then(json => {
+        return json.data.weather[0].description;
+      })
+      .catch(err => {
+        return err;
+      });
+  };
 
   runSentimentAnalysis = () => {
-    return fetch('https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
-      method: 'POST',
-      headers: {
-       'content-type': 'application/json',
-       'ocp-apim-subscription-key': '82eaf8d7aaf141e7b51d448766e4325a',
-      },
-      body: JSON.stringify({
-        "documents": [
-          {
-            "language": "en",
-            "id": "string",
-            "text": this.state.text,
-          }
-        ]
-      }),
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const sentimentScore = data.documents[0].score;
-      this.saveSentimentAnalysis(sentimentScore);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+    return fetch(
+      'https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'ocp-apim-subscription-key': '82eaf8d7aaf141e7b51d448766e4325a'
+        },
+        body: JSON.stringify({
+          documents: [
+            {
+              language: 'en',
+              id: 'string',
+              text: this.state.text
+            }
+          ]
+        })
+      }
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data.documents[0].score;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   handleFinish = () => {
-    this.getWeather();
-    this.runSentimentAnalysis();
+    const weather = new Promise(resolve => resolve(this.getWeather()));
+    const sentiment = new Promise(resolve =>
+      resolve(this.runSentimentAnalysis())
+    );
     const today = moment().format('dddd');
-    db
-      .ref()
-      .child(today)
-      .set({
-        rating: this.state.rating,
-        comments: this.state.text
-      });
+    const userId = this.props.user[0].uid;
 
-    this.props.history.push('/chart');
+    return Promise.all([weather, sentiment])
+      .then(results => {
+        db
+          .ref('/user/' + userId)
+          .child(today)
+          .set({
+            rating: this.state.rating,
+            comments: this.state.text,
+            weather: results[0],
+            sentiment: results[1]
+          });
+      })
+      .then(() => {
+        this.props.history.push('/chart');
+      });
   };
 
   handlePrev = () => {

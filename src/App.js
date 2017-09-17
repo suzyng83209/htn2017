@@ -37,7 +37,7 @@ class App extends Component {
     !this.state.user || !this.state.user.length ? (
       <Redirect to="/login" />
     ) : (
-      <TargetPage />
+      <TargetPage user={this.state.user} />
     );
 
   checkAnon = isLogin =>
