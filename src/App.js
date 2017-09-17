@@ -5,10 +5,10 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HorizontalStepper from './containers/HorizontalStepper';
 import Authenticate from './containers/Authenticate';
-import MoodChart from './containers/MoodChart';
+import Analytics from './containers/Analytics';
 import Header from './components/Header';
 import Home from './containers/Home';
-import Test from './test';
+import Chat from './containers/Chat';
 import './App.css';
 
 const Container = styled.div`
@@ -59,10 +59,10 @@ class App extends Component {
                 path="/daily"
                 render={() => this.checkAuth(HorizontalStepper)}
               />
-              <Route path="/chart" render={() => this.checkAuth(MoodChart)} />
+              <Route path="/chart" render={() => this.checkAuth(Analytics)} />
               <Route path="/login" render={() => this.checkAnon(true)} />
               <Route path="/signup" render={() => this.checkAnon()} />
-              <Route path="/test" component={Test} />
+              <Route path="/test" component={Chat} />
             </Switch>
           </Container>
         </div>
