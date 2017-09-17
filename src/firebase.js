@@ -20,7 +20,7 @@ export const config = {
 };
 
 export const uiConfig = {
-  signInSuccessUrl: 'localhost:3000',
+  signInSuccessUrl: 'logme.life/daily',
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,

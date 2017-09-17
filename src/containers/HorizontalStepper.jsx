@@ -92,7 +92,7 @@ class HorizontalStepper extends React.Component {
         db
           .ref('/user/' + userId)
           .child(today)
-          .set({
+          .update({ // TODO Change this!!!!
             rating: this.state.rating,
             comments: this.state.text,
             weather: results[0],
