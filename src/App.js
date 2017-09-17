@@ -3,14 +3,23 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HorizontalStepper from './containers/HorizontalStepper';
 import Home from './containers/Home';
-import Login from './containers/Login';
+import Authenticate from './containers/Authenticate';
 import SignUp from './containers/SignUp';
 import Header from './components/Header.jsx';
 import Test from './test';
 import Input from './components/Input';
 import MoodChart from './containers/MoodChart';
 import { auth } from './firebase';
+import styled from 'styled-components';
 import './App.css';
+
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -33,11 +42,11 @@ class App extends Component {
       <TargetPage />
     );
 
-  checkAnon = AuthPage =>
+  checkAnon = isLogin =>
     this.state.user && this.state.user.length ? (
       <Redirect to="/daily" />
     ) : (
-      <AuthPage />
+      <Authenticate isLogin={isLogin} />
     );
 
   render() {
@@ -45,10 +54,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Header />
-          <div
-            style={{ margin: '80px 20px 20px 15px' }}
-            onClick={this.onOverlayClick}
-          >
+          <Container onClick={this.onOverlayClick}>
             <Switch>
               <Route exact path="/" render={() => this.checkAuth(Home)} />
               <Route
@@ -56,11 +62,11 @@ class App extends Component {
                 render={() => this.checkAuth(HorizontalStepper)}
               />
               <Route path="/chart" render={() => this.checkAuth(MoodChart)} />
-              <Route path="/login" render={() => this.checkAnon(Login)} />
-              <Route path="/signup" render={() => this.checkAnon(SignUp)} />
+              <Route path="/login" render={() => this.checkAnon(true)} />
+              <Route path="/signup" render={() => this.checkAnon()} />
               <Route path="/test" component={Test} />
             </Switch>
-          </div>
+          </Container>
         </div>
       </MuiThemeProvider>
     );

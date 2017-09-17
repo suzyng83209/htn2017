@@ -30,7 +30,6 @@ export const uiConfig = {
       ]
     },
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
   ]
 };
 
