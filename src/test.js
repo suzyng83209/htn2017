@@ -26,19 +26,29 @@ export default class Test extends React.Component {
     };
   }
 
-  textAnalysis = () => {
-    return fetch('https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/languages', {
+  textAnalysis = (txt) => {
+    return fetch('https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
       method: 'POST',
       headers: {
-       'Content-Type': 'application/json',
-       'Ocp-Apim-Subscription-Key': '82eaf8d7aaf141e7b51d448766e4325a',
+       'content-type': 'application/json',
+       'ocp-apim-subscription-key': '82eaf8d7aaf141e7b51d448766e4325a',
       },
-      body: ({
-        "text": "I am really sad",
+      body: JSON.stringify({
+        "documents": [
+          {
+            "language": "en",
+            "id": "string",
+            "text": txt,
+          }
+        ]
       }),
     })
     .then(function (response) {
-      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data.documents[0].score);
+      return data;
     })
     .catch(function (error) {
       console.log(error);
@@ -62,25 +72,25 @@ export default class Test extends React.Component {
     console.log(result);
   };
 
-  logClick = () => {
-    new Promise(resolve => {
-      db
-        .ref()
-        .child('Total')
-        .once('value')
-        .then(snapshot => {
-          this.setState({
-            moodStr: snapshot.node_.value_
-          });
-          console.log(snapshot.node_.value_);
-          this.checkMood();
-        });
-    });
-  };
-
-  setWeather = (weather) => {
-    db.ref().child('Weather').set(weather);
-  }
+  // logClick = () => {
+  //   new Promise(resolve => {
+  //     db
+  //       .ref()
+  //       .child('Total')
+  //       .once('value')
+  //       .then(snapshot => {
+  //         this.setState({
+  //           moodStr: snapshot.node_.value_
+  //         });
+  //         console.log(snapshot.node_.value_);
+  //         this.checkMood();
+  //       });
+  //   });
+  // };
+  //
+  // setWeather = (weather) => {
+  //   db.ref().child('Weather').set(weather);
+  // }
 
 	getWeather = () => {
 		var key = "http://api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
