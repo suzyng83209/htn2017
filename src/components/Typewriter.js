@@ -28,7 +28,7 @@ class Typewriter extends React.Component {
   }
 
   componentDidMount = () => {
-    const { delay, time, sustained } = this.props;
+    const { delay, time } = this.props;
     setTimeout(
       () =>
         this.setState({
