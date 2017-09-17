@@ -54,7 +54,7 @@ class App extends Component {
           <Header />
           <Container onClick={this.onOverlayClick}>
             <Switch>
-              <Route exact path="/" render={() => this.checkAuth(Home)} />
+              <Route exact path="/" component={Home} />
               <Route
                 path="/daily"
                 render={() => this.checkAuth(HorizontalStepper)}

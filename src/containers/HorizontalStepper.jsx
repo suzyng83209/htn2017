@@ -70,7 +70,7 @@ class HorizontalStepper extends React.Component {
       <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
         <Typewriter
           phrase="How are you feeling today?"
-          fontSize="3em"
+          fontSize="2em"
           time={200}
           delay={0}
           substr=""
