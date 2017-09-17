@@ -41,7 +41,7 @@ class Header extends Component {
     super(props);
     this.state = {
       openChat: false,
-      user: [{}]
+      user: null
     };
   }
 
@@ -130,13 +130,13 @@ class Header extends Component {
           iconElementRight={button}
         />
         <Dialog
-          title={`${this.state.user[0].displayName}'s Chat`}
+          title={`${(this.state.user || [{}])[0].displayName}'s Chat`}
           actions={[<FlatButton label="Close" onClick={this.handleChatClose} />]}
           modal={true}
           open={this.state.openChat}
           onRequestClose={this.handleChatClose}
         >
-          <Chatbox imgUrl={this.state.user[0].photoURL} />
+          <Chatbox imgUrl={(this.state.user || [{}])[0].photoURL} />
         </Dialog>
         <ChatBubble onClick={this.handleChatOpen}>
           <Chat />
