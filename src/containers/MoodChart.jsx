@@ -7,6 +7,7 @@ import Sad from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import Neutral from 'material-ui/svg-icons/social/sentiment-neutral';
 import Happy from 'material-ui/svg-icons/social/sentiment-satisfied';
 import VeryHappy from 'material-ui/svg-icons/social/sentiment-very-satisfied';
+import MoodTable from './MoodTable';
 
 const data = [
 	{day: 1, mood: 1},
@@ -76,6 +77,7 @@ class MoodChart extends React.Component {
 		         />
 			     </VictoryChart>
 				 </g>
+				 <MoodTable data={fakeData} />
 			</div>
     )
   }
