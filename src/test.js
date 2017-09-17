@@ -107,7 +107,7 @@ export default class Test extends React.Component {
     return (
       <div style={{height:"100vh", marginTop:"50%"}}>
         {' '}
-        <button onClick={this.textAnalysis}> click me to log str </button>
+        <button onClick={() => this.textAnalysis('hi')}> click me to log str </button>
       </div>
     );
   };
