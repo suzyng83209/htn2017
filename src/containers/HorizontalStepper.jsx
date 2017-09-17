@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import JournalRating from './JournalRating';
 import JournalText from './JournalText';
 import { db } from '../firebase';
+import axios from 'axios';
 
 const Input = props => (
   <div>
@@ -34,7 +35,57 @@ class HorizontalStepper extends React.Component {
     });
   };
 
+  setWeather = (weather) => {
+    db.ref().child('Weather').set(weather);
+  }
+
+  getWeather = () => {
+    var key = "http://api.openweathermap.org/data/2.5/weather?q=Waterloo&APPID=002768ee775ba2d1d80d3508fb8a5bc0";
+    return axios.get(key)
+    .then((json) => {
+      const weather = json.data.weather[0].description;
+      return this.setWeather(weather);
+    }).catch((err) => {
+      return err;
+    })
+  }
+
+  saveSentimentAnalysis = (sentimentScore) => {
+    db.ref().child('SentimentScore').set(sentimentScore);
+  }
+
+  runSentimentAnalysis = () => {
+    return fetch('https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
+      method: 'POST',
+      headers: {
+       'content-type': 'application/json',
+       'ocp-apim-subscription-key': '82eaf8d7aaf141e7b51d448766e4325a',
+      },
+      body: JSON.stringify({
+        "documents": [
+          {
+            "language": "en",
+            "id": "string",
+            "text": this.state.text,
+          }
+        ]
+      }),
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const sentimentScore = data.documents[0].score;
+      this.saveSentimentAnalysis(sentimentScore);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   handleFinish = () => {
+    this.getWeather();
+    this.runSentimentAnalysis();
     const today = moment().format('dddd');
     db
       .ref()
