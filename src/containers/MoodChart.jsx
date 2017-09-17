@@ -30,7 +30,7 @@ const fakeData = {
 		weather: 'sun',
 	}
 }
-
+// MoodTable data={fakeData}/>
 class MoodChart extends React.Component {
 	constructor(props) {
 		super(props);
@@ -55,8 +55,8 @@ class MoodChart extends React.Component {
 			<div>
 		    <g transform={"translate(500, 0)"}>
 			    <VictoryChart
-		         //theme={VictoryTheme.material}
-						 domainPadding={{ x: 40, y: 40 }}
+						theme={VictoryTheme.material}
+			 			padding={{ top: 50, bottom: 80, left: 80, right: 80 }}
 		       >
 		         <VictoryAxis
 		           tickValues={["Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]}
