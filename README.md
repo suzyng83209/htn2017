@@ -1,7 +1,7 @@
 # Log(me) 
 
 landing_page.gif
-![Landing Page][http://www.giphy.com/gifs/3ov9k6g6xJEekCxHoI]
+![Landing Page](https://github.com/joannalu97/htn2017/blob/master/pics/landing_page.gif)
 
 Log(me) focuses on the improving mental health by providing two services.
 
