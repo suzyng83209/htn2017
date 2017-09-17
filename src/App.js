@@ -62,7 +62,6 @@ class App extends Component {
               <Route path="/chart" render={() => this.checkAuth(Analytics)} />
               <Route path="/login" render={() => this.checkAnon(true)} />
               <Route path="/signup" render={() => this.checkAnon()} />
-              <Route path="/test" component={Chat} />
             </Switch>
           </Container>
         </div>

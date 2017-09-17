@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { auth } from '../firebase';
+import Chatbox from '../containers/Chat';
 import AppBar from 'material-ui/AppBar';
+import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Chat from 'material-ui/svg-icons/notification/sms';
 
 const Logo = styled.div`
   display: flex;
@@ -15,13 +19,48 @@ const Logo = styled.div`
   }
 `;
 
+const ChatBubble = styled.div`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 2em;
+  margin: 100px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: window.localStorage.getItem('firebaseui::rememberedAccounts')
+      openChat: false,
+      user: [{}]
     };
   }
+
+  actions = [
+    <FlatButton label="Close" onClick={this.hideAdvisory} />,
+  ];
+
+  componentDidMount = () => {
+    auth.onAuthStateChanged(user => {
+      this.setState({ user: (user || {}).providerData });
+    });
+  };
+
+  handleChatClose = () => {
+    this.setState({ openChat: false });
+  };
+  handleChatOpen = () => {
+    this.setState({ openChat: true });
+  };
 
   render() {
     const { styles } = this.props;
@@ -83,15 +122,29 @@ class Header extends Component {
         </div>
       );
     return (
-      <AppBar
-        style={{ ...styles, ...style.appBar }}
-        title={
-          <Logo onClick={() => this.props.history.push('/')}>Log(me)</Logo>
-        }
-        titleStyle={{}}
-        iconElementLeft={leftButtons}
-        iconElementRight={button}
-      />
+      <div>
+        <AppBar
+          style={{ ...styles, ...style.appBar }}
+          title={
+            <Logo onClick={() => this.props.history.push('/')}>Log(me)</Logo>
+          }
+          titleStyle={{}}
+          iconElementLeft={leftButtons}
+          iconElementRight={button}
+        />
+        <Dialog
+          title={`${this.state.user[0].displayName}'s Chat`}
+          actions={this.actions}
+          modal={true}
+          open={this.state.openChat}
+          onRequestClose={this.handleChatClose}
+        >
+          <Chatbox imgUrl={this.state.user[0].photoURL} />
+        </Dialog>
+        <ChatBubble onClick={this.handleChatOpen}>
+          <Chat />
+        </ChatBubble>
+      </div>
     );
   }
 }
