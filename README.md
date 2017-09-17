@@ -1,6 +1,5 @@
 # Log(me) 
 
-landing_page.gif
 ![Landing Page](https://github.com/joannalu97/htn2017/blob/master/pics/landing_page.gif)
 
 Log(me) focuses on the improving mental health by providing two services.
@@ -11,5 +10,20 @@ The second feature of **Log(me)** is its smart journal. Each login, the user is 
 
 ## Navigating Log(me)
 
+1. Secure Login 
 
+![Login](https://github.com/joannalu97/htn2017/blob/master/pics/login_page.png)
+
+2. Utilising the Smart Journal
+
+First, record your daily mood
+
+![Mood](https://github.com/joannalu97/htn2017/blob/master/pics/current_mode.png)
+
+Then, record any thoughts or events you had during the day.
+
+![Journal](https://github.com/joannalu97/htn2017/blob/master/pics/journal.png)
+
+3. Navigate through the weekly stats from an overview of mood trends, to mapping relative weather data.
+Using sentiment analysis, log(me) prompts suggestions for the user using the chat feature.
 
