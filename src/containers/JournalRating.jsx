@@ -1,5 +1,5 @@
 import React from 'react';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import VerySad from 'material-ui/svg-icons/social/mood-bad';
 import Sad from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import Neutral from 'material-ui/svg-icons/social/sentiment-neutral';
@@ -8,16 +8,20 @@ import VeryHappy from 'material-ui/svg-icons/social/sentiment-very-satisfied';
 
 const styles = {
   block: {
-    maxWidth: 250,
+    maxWidth: 250
   },
   radioButton: {
-    marginBottom: 16,
-  },
+    marginBottom: 16
+  }
 };
 
-const JournalRating = () => (
+const JournalRating = ({ handleChange }) => (
   <div>
-    <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+    <RadioButtonGroup
+      name="shipSpeed"
+      defaultSelected="not_light"
+      onChange={handleChange}
+    >
       <RadioButton
         value="very_happy"
         label="Very Happy"
