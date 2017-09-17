@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { ui, uiConfig, auth } from '../firebase';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-class Login extends Component {
+class Authenticate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +21,8 @@ class Login extends Component {
     ui.reset();
   };
 
-  handleLoginClick = event => {
-    event.preventDefault();
+  handleLogin = e => {
+    e.preventDefault();
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => console.log('done logging in'))
@@ -30,7 +31,18 @@ class Login extends Component {
       });
   };
 
+  handleSignUp = e => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => console.log('done signing up'))
+      .catch(error => {
+        console.log(error.code, error.message);
+      });
+  };
+
   render() {
+    const { isLogin } = this.props;
     return (
       <div style={{ margin: 'auto', width: '100%' }}>
         <div style={{ margin: 'auto', width: '50%' }}>
@@ -52,10 +64,10 @@ class Login extends Component {
           />
           <br />
           <RaisedButton
-            label="Login"
+            label={isLogin ? 'Login' : 'Sign Up'}
             primary={true}
             style={{ marginTop: '15px' }}
-            onClick={event => this.handleLoginClick(event)}
+            onClick={isLogin ? this.handleLogin : this.handleSignUp}
           />
         </div>
       </div>
@@ -63,4 +75,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Authenticate);
