@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import { auth } from './firebase';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HorizontalStepper from './containers/HorizontalStepper';
-import Home from './containers/Home';
 import Authenticate from './containers/Authenticate';
-import SignUp from './containers/SignUp';
-import Header from './components/Header';
-import Test from './test';
-import Input from './components/Input';
 import MoodChart from './containers/MoodChart';
-import { auth } from './firebase';
-import styled from 'styled-components';
+import Header from './components/Header';
+import Input from './components/Input';
+import Home from './containers/Home';
+import Test from './test';
 import './App.css';
 
 const Container = styled.div`

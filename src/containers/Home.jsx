@@ -48,7 +48,7 @@ class Home extends Component {
   render() {
     return (
       <div className="App">
-        <Typewriter phrase="Log(me);" time={300} delay={500} />
+        <Typewriter phrase="Log(me);" time={300} delay={500} substr="me" />
         {/* <button onClick={submitClick}>Update Firebase</button>
           <Test /> */}
       </div>

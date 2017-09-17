@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import Typewriter from '../components/Typewriter';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import JournalText from './JournalText';
-import JournalRating from './JournalRating';
 import { withRouter } from 'react-router-dom';
+import JournalRating from './JournalRating';
+import JournalText from './JournalText';
 import { db } from '../firebase';
 
 const Input = props => (
@@ -67,6 +68,13 @@ class HorizontalStepper extends React.Component {
 
     return (
       <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
+        <Typewriter
+          phrase="How are you feeling today?"
+          fontSize="3em"
+          time={200}
+          delay={0}
+          substr=""
+        />
         <Stepper activeStep={stepIndex}>
           <Step>
             <StepLabel>Select current mood</StepLabel>

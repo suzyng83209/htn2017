@@ -3,8 +3,15 @@ import styled from 'styled-components';
 
 const BlinkingCaret = styled.span`
   border-right: 6px solid ${props => (props.isBlink ? 'black' : 'transparent')};
-  color: ${props => ('me'.includes(props.value) ? '#36e1ea' : '#292929')};
+  color: ${props =>
+    props.substr.includes(props.value) ? '#36e1ea' : '#292929'};
   padding-right: ${props => (props.last ? '8px' : '0')};
+`;
+
+const Container = styled.div`
+  font-family: 'Arvo', serif;
+  overflow: hidden;
+  font-size: ${props => (props.size ? props.size : '4em')};
 `;
 
 class Typewriter extends React.Component {
@@ -23,7 +30,10 @@ class Typewriter extends React.Component {
     const letters = [...this.props.phrase];
     let typingTimer = setInterval(this.tick, this.props.time);
     let blinkingCaretTimer = setInterval(this.handleBlink, 500);
-    setTimeout(() => this.setState({ typingTimer, blinkingCaretTimer, letters }), this.props.delay);
+    setTimeout(
+      () => this.setState({ typingTimer, blinkingCaretTimer, letters }),
+      this.props.delay
+    );
   };
 
   tick = () => {
@@ -39,7 +49,7 @@ class Typewriter extends React.Component {
   render = () => {
     const { letters, counter, isBlink } = this.state;
     return (
-      <h1 style={{ fontFamily: 'Arvo, serif', overflow: 'hidden', fontSize: '4em' }}>
+      <Container size={this.props.fontSize}>
         {letters.map((x, i) => {
           return (
             i < counter &&
@@ -47,6 +57,7 @@ class Typewriter extends React.Component {
               <BlinkingCaret
                 value={x}
                 key={i}
+                substr={this.props.substr}
                 last={i === letters.length - 1}
                 isBlink={i === counter - 1 && isBlink}
               >
@@ -55,7 +66,7 @@ class Typewriter extends React.Component {
             )
           );
         })}
-      </h1>
+      </Container>
     );
   };
 }
