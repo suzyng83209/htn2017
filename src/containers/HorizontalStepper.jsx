@@ -36,8 +36,10 @@ class HorizontalStepper extends React.Component {
 
   handleFinish = () => {
     const today = moment().format('dddd');
+    const userId = this.props.user[0].uid;
+    
     db
-      .ref()
+      .ref('/user/' + userId)
       .child(today)
       .set({
         rating: this.state.rating,
