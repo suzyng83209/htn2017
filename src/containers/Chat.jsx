@@ -9,7 +9,7 @@ class Chat extends React.Component {
       {
         type: 1,
         image: '',
-        text: 'Hello! Good Afternoon!'
+        text: 'Hello, how can I help?'
       }
     ]
   };
@@ -28,7 +28,7 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ height: '360px', overflow: 'scroll' }}>
         <ChatBubble messages={this.state.messages} />
         <TextField
           value={this.state.input}
