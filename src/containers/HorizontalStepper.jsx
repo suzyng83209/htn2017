@@ -69,9 +69,12 @@ class HorizontalStepper extends React.Component {
       }
     )
       .then(response => {
+        console.log('response', response);
         return response.json();
       })
       .then(data => {
+        console.log('data', data);
+        
         return data.documents[0].score;
       })
       .catch(error => {
@@ -89,14 +92,15 @@ class HorizontalStepper extends React.Component {
 
     return Promise.all([weather, sentiment])
       .then(results => {
+        console.log('results', results);        
         db
           .ref('/user/' + userId)
           .child(today)
           .update({ // TODO Change this!!!!
             rating: this.state.rating,
             comments: this.state.text,
-            weather: results[0],
-            sentiment: results[1]
+            weather: results[0] || "",
+            sentiment: results[1] || 0,
           });
       })
       .then(() => {
