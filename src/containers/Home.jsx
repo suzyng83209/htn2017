@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { db } from '../firebase';
-import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import Typewriter from '../components/Typewriter';
 
@@ -57,7 +55,3 @@ class Home extends Component {
 }
 
 export default withRouter(Home);
-
-Home.propTypes = {
-  history: React.PropTypes.object
-};

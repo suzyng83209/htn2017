@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { auth } from '../firebase';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
-import ActionMenu from 'material-ui/svg-icons/navigation/menu';
 
 const Logo = styled.div`
   display: flex;
@@ -23,12 +21,8 @@ class Header extends Component {
     };
   }
 
-  handleToggle = () => {
-    this.props.handleChangeRequestNavDrawer();
-  };
-
   render() {
-    const { styles, handleChangeRequestNavDrawer } = this.props;
+    const { styles } = this.props;
     const style = {
       appBar: {
         position: 'fixed',
@@ -50,15 +44,6 @@ class Header extends Component {
         color: 'white'
       }
     };
-    let leftBurger = <div style={{ width: 20 }} />;
-    leftBurger = (
-      <IconButton
-        style={style.menuButton}
-        onClick={handleChangeRequestNavDrawer}
-      >
-        <ActionMenu />
-      </IconButton>
-    );
     const leftButtons = (
       <div>
         <FlatButton

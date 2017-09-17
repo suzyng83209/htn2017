@@ -62,7 +62,7 @@ class HorizontalStepper extends React.Component {
   };
 
   render() {
-    const { finished, stepIndex } = this.state;
+    const { stepIndex } = this.state;
     const contentStyle = { margin: '0 16px' };
 
     return (
