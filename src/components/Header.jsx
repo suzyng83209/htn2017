@@ -7,6 +7,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 const Logo = styled.div`
   display: flex;
+  font-family: 'Arvo', serif;
+  font-size: '4em';
   justify-content: center;
   &:hover {
     cursor: pointer;
@@ -58,6 +60,7 @@ class Header extends Component {
         />
       </div>
     );
+
     const button =
       this.state.user && this.state.user.length ? (
         <FlatButton
