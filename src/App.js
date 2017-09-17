@@ -5,7 +5,8 @@ import HorizontalStepper from './containers/HorizontalStepper';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import SignUp from './containers/SignUp';
-import Header from './components/Header.jsx';
+import Header from './components/Header';
+import Chat from './containers/Chat';
 import Test from './test';
 import Input from './components/Input';
 import MoodChart from './containers/MoodChart';
@@ -22,6 +23,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/daily" component={HorizontalStepper} />
               <Route path="/input" component={Input} />
+              <Route path="/chat" component={Chat} />
               <Route path="/chart" component={MoodChart} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
