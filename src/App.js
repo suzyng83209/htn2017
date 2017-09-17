@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HorizontalStepper from './containers/HorizontalStepper';
 import Home from './containers/Home';
@@ -16,19 +16,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: window.localStorage.getItem('firebaseui::rememberedAccounts')
+      user: null
     };
   }
 
-  redirectToLogin = () => {
-    if (!this.state.user || !this.state.user.length)
-      return this.props.history.push('/login');
+  componentWillMount = () => {
+    auth.onAuthStateChanged(user => {
+      this.setState({ user: (user || {}).providerData });
+    });
   };
 
-  redirectToHome = () => {
-    if (this.state.user && this.state.user.length)
-      return this.props.history.push('/daily');
-  };
+  checkAuth = TargetPage =>
+    !this.state.user || !this.state.user.length ? (
+      <Redirect to="/login" />
+    ) : (
+      <TargetPage />
+    );
+
+  checkAnon = AuthPage =>
+    this.state.user && this.state.user.length ? (
+      <Redirect to="/daily" />
+    ) : (
+      <AuthPage />
+    );
 
   render() {
     return (
@@ -40,16 +50,14 @@ class App extends Component {
             onClick={this.onOverlayClick}
           >
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/daily" component={HorizontalStepper} />
-              <Route path="/input" component={Input} />
-              <Route path="/chart" component={MoodChart} />
+              <Route exact path="/" render={() => this.checkAuth(Home)} />
               <Route
-                path="/login"
-                component={Login}
-                onEnter={this.redirectToHome}
+                path="/daily"
+                render={() => this.checkAuth(HorizontalStepper)}
               />
-              <Route path="/signup" component={SignUp} />
+              <Route path="/chart" render={() => this.checkAuth(MoodChart)} />
+              <Route path="/login" render={() => this.checkAnon(Login)} />
+              <Route path="/signup" render={() => this.checkAnon(SignUp)} />
               <Route path="/test" component={Test} />
             </Switch>
           </div>
