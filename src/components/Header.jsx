@@ -27,7 +27,7 @@ const ChatBubble = styled.div`
   margin: 100px;
   cursor: pointer;
   border-radius: 50%;
-  background: white;
+  background: #36e1ea;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   height: 100px;
   width: 100px;
@@ -46,7 +46,7 @@ class Header extends Component {
   }
 
   actions = [
-    <FlatButton label="Close" onClick={this.hideAdvisory} />,
+    <FlatButton label="Close" onClick={this.handleChatClose} />,
   ];
 
   componentDidMount = () => {
