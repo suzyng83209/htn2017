@@ -45,10 +45,6 @@ class Header extends Component {
     };
   }
 
-  actions = [
-    <FlatButton label="Close" onClick={this.handleChatClose} />,
-  ];
-
   componentDidMount = () => {
     auth.onAuthStateChanged(user => {
       this.setState({ user: (user || {}).providerData });
@@ -58,6 +54,7 @@ class Header extends Component {
   handleChatClose = () => {
     this.setState({ openChat: false });
   };
+
   handleChatOpen = () => {
     this.setState({ openChat: true });
   };
@@ -134,7 +131,7 @@ class Header extends Component {
         />
         <Dialog
           title={`${this.state.user[0].displayName}'s Chat`}
-          actions={this.actions}
+          actions={[<FlatButton label="Close" onClick={this.handleChatClose} />]}
           modal={true}
           open={this.state.openChat}
           onRequestClose={this.handleChatClose}
