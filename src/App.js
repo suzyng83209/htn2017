@@ -7,9 +7,9 @@ import HorizontalStepper from './containers/HorizontalStepper';
 import Authenticate from './containers/Authenticate';
 import MoodChart from './containers/MoodChart';
 import Header from './components/Header';
-import Input from './components/Input';
-import Home from './containers/Home';
 import Test from './test';
+import { auth } from './firebase';
+import styled from 'styled-components';
 import './App.css';
 
 const Container = styled.div`

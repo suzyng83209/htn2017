@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
 import TextField from 'material-ui/TextField';
 
 export default ({ handleChange }) => (
