@@ -1,16 +1,17 @@
 {
-  "name": "logme",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Chuqian Li",
-  "license": "MIT",
-  "scripts": {
-    "start": "node index.js",
-    "build-app": "cd logme-app; npm run build && node index.js"
-  },
-  "dependencies": {
-    "express": "^4.16.2",
-    "http": "^0.0.0",
-    "socket.io": "^2.0.4"
-  }
+    "name": "logme",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Chuqian Li",
+    "license": "MIT",
+    "scripts": {
+        "start": "node index.js",
+        "start-dev": "nodemon index.js",
+        "build-app": "cd logme-app && npm install && npm run build"
+    },
+    "dependencies": {
+        "express": "^4.16.2",
+        "http": "^0.0.0",
+        "socket.io": "^2.0.4"
+    }
 }
