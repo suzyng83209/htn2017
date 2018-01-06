@@ -2,12 +2,13 @@
 
 # dependencies
 /node_modules
+/logme-app/node_modules
 
 # testing
 /coverage
 
 # production
-/build
+/logme-app/build
 
 # misc
 .DS_Store
