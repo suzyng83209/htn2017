@@ -7,7 +7,9 @@
             "instances": 1,
             "max_memory_restart": "750M",
             "kill_timeout": 1600,
-            "max_restarts": 10
+            "max_restarts": 10,
+            "error_file": "/home/ec2-user/deploy/apps/logs/pm2/logme-stderr.log",
+            "out_file": "/home/ec2-user/deploy/apps/logs/pm2/logme-stdout.log"
         }
     ]
 }
