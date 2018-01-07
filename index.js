@@ -5,6 +5,10 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/logme-app/build')));
 
+app.get('/ping', (req, res) => {
+    res.status(200).send('pong');
+})
+
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
