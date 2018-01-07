@@ -7,7 +7,8 @@
     "scripts": {
         "start": "node index.js",
         "start-dev": "nodemon index.js",
-        "build-app": "cd logme-app && npm install && npm run build"
+        "build-app": "cd logme-app && npm install && npm run build",
+        "heroku-postbuild": "cd logme-app && yarn --production=false && yarn run build"
     },
     "dependencies": {
         "express": "^4.16.2",
